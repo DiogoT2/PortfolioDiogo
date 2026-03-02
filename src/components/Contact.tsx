@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { motion } from "motion/react";
 import { Mail, ArrowRight, Copy, CheckCircle2, Github, Linkedin, Twitter } from "lucide-react";
 import { toast } from "sonner";
+import { GitHubCalendar } from 'react-github-calendar';
 
 export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -46,7 +47,7 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="max-w-2xl flex-1"
+          className="max-w-2xl flex-1 w-full"
         >
           <h2 className="text-5xl md:text-7xl font-bold tracking-tighter mb-6 text-zinc-900 dark:text-zinc-50 font-display">
             Let's build something{" "}
@@ -76,7 +77,7 @@ export default function Contact() {
             </button>
           </div>
 
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-6 mb-12">
             <a href="https://github.com" target="_blank" rel="noreferrer" className="p-3 rounded-full bg-zinc-100 dark:bg-zinc-800/50 hover:bg-zinc-200 dark:hover:bg-zinc-800 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-50 hover:-translate-y-1 transition-all">
               <Github className="w-6 h-6" />
             </a>
@@ -86,6 +87,21 @@ export default function Contact() {
             <a href="https://twitter.com" target="_blank" rel="noreferrer" className="p-3 rounded-full bg-zinc-100 dark:bg-zinc-800/50 hover:bg-zinc-200 dark:hover:bg-zinc-800 text-zinc-600 dark:text-zinc-400 hover:text-[#1DA1F2] dark:hover:text-[#1DA1F2] hover:-translate-y-1 transition-all">
               <Twitter className="w-6 h-6" />
             </a>
+          </div>
+
+          <div className="p-6 rounded-3xl bg-white dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800/50 overflow-hidden shadow-xl dark:shadow-none hidden sm:block">
+            <h3 className="text-sm font-mono text-zinc-500 mb-6 flex items-center gap-2">
+              <Github className="w-4 h-4" /> github_contributions
+            </h3>
+            <div className="overflow-x-auto scrollbar-none pb-2 opacity-80 hover:opacity-100 transition-opacity">
+              <GitHubCalendar
+                username="DiogoT2" // Demo username that usually has constant green activity
+                blockSize={12}
+                blockMargin={4}
+                fontSize={12}
+                colorScheme="dark" // Usually looks sleeker
+              />
+            </div>
           </div>
         </motion.div>
 

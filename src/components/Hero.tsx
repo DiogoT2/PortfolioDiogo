@@ -1,9 +1,12 @@
 import { motion } from "motion/react";
-import { ArrowDownRight, Terminal } from "lucide-react";
+import { ArrowDownRight, Terminal, User } from "lucide-react";
 import ScrambleText from "./ScrambleText";
 import Magnetic from "./Magnetic";
+import { useSound } from "./SoundContext";
 
 export default function Hero() {
+  const { playClick, playWoosh } = useSound();
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-6 pt-24">
       {/* Dynamic Background glow blobs */}
@@ -28,6 +31,20 @@ export default function Hero() {
       />
 
       <div className="max-w-5xl w-full mx-auto flex flex-col items-center text-center z-10">
+        <motion.div
+          onClick={() => {
+            playWoosh();
+            window.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', metaKey: true }));
+          }}
+          className="cursor-pointer inline-flex items-center gap-2 px-3 py-1.5 mb-8 rounded-full bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 text-xs font-medium hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-colors"
+        >
+          <span className="flex items-center gap-1.5 font-mono">
+            <kbd className="px-1.5 py-0.5 bg-zinc-200 dark:bg-zinc-800 rounded">⌘</kbd>
+            <kbd className="px-1.5 py-0.5 bg-zinc-200 dark:bg-zinc-800 rounded">K</kbd>
+          </span>
+          <span>Open Command Palette</span>
+        </motion.div>
+
         <motion.h1
           initial={{ y: 40, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -65,6 +82,7 @@ export default function Hero() {
         >
           <Magnetic>
             <a
+              onClick={playClick}
               href="#projects"
               className="group relative inline-flex items-center gap-2 px-8 py-4 bg-zinc-900 border border-zinc-900 dark:border-zinc-800 dark:bg-zinc-50 text-zinc-50 dark:text-zinc-950 rounded-full font-medium hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-colors shadow-xl"
             >
@@ -74,6 +92,19 @@ export default function Hero() {
           </Magnetic>
           <Magnetic>
             <a
+              onClick={playClick}
+              href="/resume.pdf" // Placeholder link
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-zinc-50 rounded-full font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800/50 transition-colors shadow-md shadow-zinc-200/50 dark:shadow-none"
+            >
+              <User className="w-4 h-4 text-zinc-500 dark:text-zinc-400" />
+              Download Resume
+            </a>
+          </Magnetic>
+          <Magnetic>
+            <a
+              onClick={playClick}
               href="#contact"
               className="inline-flex items-center gap-2 px-8 py-4 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-zinc-50 rounded-full font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800/50 transition-colors shadow-md shadow-zinc-200/50 dark:shadow-none"
             >
